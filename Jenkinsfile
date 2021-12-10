@@ -15,7 +15,7 @@ pipeline {
 
                         sh (
                         label: 'mvn deploy spring-boot:build-image',
-                        script: 'export OTEL_TRACES_EXPORTER="otlp" && ./mvnw deploy spring-boot:build-image')
+                        script: 'export OTEL_TRACES_EXPORTER="otlp" && ./mvnw deploy')
                         archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
                     }
                 }
