@@ -72,7 +72,7 @@
                 </executions>
                 <configuration>
                     <image>
-                        <name>docker.io/${env.CONTAINER_REGISTRY_USERNAME}/${project.artifactId}</name>
+                        <name>docker.io/v1v1v/${project.artifactId}</name>
                     </image>
                     <publish>true</publish>
                     <docker>
