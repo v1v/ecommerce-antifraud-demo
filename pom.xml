@@ -72,7 +72,7 @@
                 </executions>
                 <configuration>
                     <image>
-                        <name>docker.io/cleclerc/${project.artifactId}</name>
+                        <name>docker.io/${env.CONTAINER_REGISTRY_USERNAME}/${project.artifactId}</name>
                     </image>
                     <publish>true</publish>
                     <docker>
