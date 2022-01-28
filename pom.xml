@@ -30,6 +30,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.opentelemetry.javaagent</groupId>
+            <artifactId>opentelemetry-javaagent</artifactId>
+            <version>1.10.0</version>
+      </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -73,6 +78,18 @@
                 <configuration>
                     <image>
                         <name>docker.io/v1v1v/${project.artifactId}</name>
+                        <env>
+                            <!-- https://docs.spring.io/spring-boot/docs/3.0.x/maven-plugin/reference/htmlsingle/#build-image.examples.runtime-jvm-configuration -->
+                            <!-- https://paketo.io/docs/howto/java/ -->
+                            <!-- https://paketo.io/docs/howto/configuration/ -->
+                            <BPE_JAVA_TOOL_OPTIONS> -javaagent:/workspace/BOOT-INF/lib/opentelemetry-javaagent-1.10.0.jar</BPE_JAVA_TOOL_OPTIONS>
+                            <BPE_OTEL_TRACES_EXPORTER>otlp</BPE_OTEL_TRACES_EXPORTER>
+                            <BPE_OTEL_EXPORTER_OTLP_ENDPOINT>http://otel-collector:4317</BPE_OTEL_EXPORTER_OTLP_ENDPOINT>
+                            <BPE_OPEN_TELEMETRY_AGENT_JAR>/workspace/BOOT-INF/lib/opentelemetry-javaagent-1.10.0.jar</BPE_OPEN_TELEMETRY_AGENT_JAR>
+                            <BPE_OTEL_RESOURCE_ATTRIBUTES>service.name=frontend,service.namespace=com-ecommerce,service.version=${project.version},deployment.environment=test</BPE_OTEL_RESOURCE_ATTRIBUTES>
+                            <BPE_OTEL_METRICS_EXPORTER>otlp</BPE_OTEL_METRICS_EXPORTER>
+                            <BPE_OTEL_LOGS_EXPORTER>otlp</BPE_OTEL_LOGS_EXPORTER>
+                        </env>
                     </image>
                     <publish>true</publish>
                     <docker>
