@@ -21,5 +21,24 @@ pipeline {
                 }
             }
         }
+        stage('Deploy') {
+            steps {
+                build(job: 'antifraud/deploy-antifraud',
+                          parameters: [
+                            string(name: 'PREVIOUS_VERSION', value: previousVersion()),
+                            string(name: 'VERSION', value: newVersion())
+                      ])
+            }
+        }
     }
+}
+
+def previousVersion() {
+    def props = readProperties(file: 'versions.properties')
+    return props.CURRENT
+}
+
+def newVersion() {
+    def props = readProperties(file: 'versions.properties')
+    return props.NEW
 }
