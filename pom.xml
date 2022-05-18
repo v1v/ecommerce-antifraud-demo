@@ -20,6 +20,7 @@
         <snyk.token>${env.SNYK_TOKEN}</snyk.token>
     </properties>
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -44,6 +45,11 @@
                 <version>2.17.1</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>5.3.20</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
