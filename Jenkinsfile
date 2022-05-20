@@ -1,8 +1,8 @@
 pipeline {
     options {
-		disableConcurrentBuilds()
-		quietPeriod(7)
-	}
+        disableConcurrentBuilds()
+        quietPeriod(7)
+    }
     agent {
       label 'linux'
     }
@@ -15,11 +15,14 @@ pipeline {
                             credentialsId: 'docker.io',
                             passwordVariable: 'CONTAINER_REGISTRY_PASSWORD',
                             usernameVariable: 'CONTAINER_REGISTRY_USERNAME')]) {
-
-                        sh (
-                        label: 'mvn deploy spring-boot:build-image',
-                        script: 'export OTEL_TRACES_EXPORTER="otlp" && ./mvnw -V -B deploy')
-                        archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+                        // hack to cache the artifacts, therefore the demo can run a bit faster
+                        dir("${newVersion()}") {
+                            sh(label: 'prepare context', script: 'cp -r ../ . || true')
+                            sh (
+                            label: 'mvn deploy spring-boot:build-image',
+                            script: 'export OTEL_TRACES_EXPORTER="otlp" && ./mvnw -V -B deploy')
+                            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+                        }
                     }
                 }
             }
