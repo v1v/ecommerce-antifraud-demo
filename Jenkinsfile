@@ -1,5 +1,8 @@
 pipeline {
-    options { disableConcurrentBuilds() }
+    options {
+		disableConcurrentBuilds()
+		quietPeriod(7)
+	}
     agent {
       label 'linux'
     }
