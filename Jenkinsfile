@@ -1,13 +1,30 @@
 pipeline {
+    agent none
     options {
         disableConcurrentBuilds()
         quietPeriod(7)
     }
-    agent {
-      label 'linux'
-    }
     stages {
+        stage('Checkout') {
+            agent {
+                node {
+                    label 'linux'
+                }
+            }
+            steps {
+                echo 'cache checkout'
+                script {
+                    env.VERSION = newVersion()
+                }
+            }
+        }
         stage('Build') {
+            agent {
+                node {
+                    label 'linux'
+                    customWorkspace "${VERSION}"
+                }
+            }
             steps {
                 withCredentials([string(credentialsId: 'snyk.io', variable: 'SNYK_TOKEN')]) {
                     withCredentials([
@@ -15,14 +32,10 @@ pipeline {
                             credentialsId: 'docker.io',
                             passwordVariable: 'CONTAINER_REGISTRY_PASSWORD',
                             usernameVariable: 'CONTAINER_REGISTRY_USERNAME')]) {
-                        // hack to cache the artifacts, therefore the demo can run a bit faster
-                        dir("${newVersion()}") {
-                            sh(label: 'prepare context', script: 'cp -r ../ . || true')
-                            sh (
-                            label: 'mvn deploy spring-boot:build-image',
-                            script: 'export OTEL_TRACES_EXPORTER="otlp" && ./mvnw -V -B deploy')
-                            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
-                        }
+                        sh (
+                        label: 'mvn deploy spring-boot:build-image',
+                        script: 'export OTEL_TRACES_EXPORTER="otlp" && ./mvnw -V -B deploy')
+                        archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
                     }
                 }
             }
