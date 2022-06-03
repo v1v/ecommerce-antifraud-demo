@@ -1,0 +1,39 @@
+diff --git a/Jenkinsfile b/Jenkinsfile
+index f64c8ad..fe64d68 100644
+--- a/Jenkinsfile
++++ b/Jenkinsfile
+@@ -34,12 +34,10 @@ pipeline {
+                         //sh(label: 'security issue', script: 'echo "${CONTAINER_REGISTRY_PASSWORD}" > file.txt')
+                     }
+                 }
+-				/*
+                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                     sh(label: 'security issue', script: 'echo "${GITHUB_TOKEN}" > file.txt')
+                 }
+                 sh(label: 'read password', script: 'cat file.txt')
+-				*/
+             }
+             post {
+                 failure {
+diff --git a/pom.xml b/pom.xml
+index 9dc4044..8131808 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -10,7 +10,7 @@
+     </parent>
+     <groupId>com.mycompany.ecommerce</groupId>
+     <artifactId>anti-fraud</artifactId>
+-    <version>0.0.3</version>
++    <version>0.0.4</version>
+     <name>anti-fraud</name>
+     <description>Ecommerce Anti Fraud</description>
+     <properties>
+diff --git a/versions.properties b/versions.properties
+index 1540f9d..ee07306 100644
+--- a/versions.properties
++++ b/versions.properties
+@@ -1,2 +1,2 @@
+-CURRENT=0.0.2
+-NEW=0.0.3
++CURRENT=0.0.3
++NEW=0.0.4

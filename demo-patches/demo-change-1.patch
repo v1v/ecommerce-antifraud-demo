@@ -1,0 +1,29 @@
+diff --git a/pom.xml b/pom.xml
+index fb7d4e8..c66e023 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -10,10 +10,7 @@
+     </parent>
+     <groupId>com.mycompany.ecommerce</groupId>
+     <artifactId>anti-fraud</artifactId>
+-    <!-- TODO: version 0.0.2
+     <version>0.0.2</version>
+-    -->
+-    <version>0.0.1</version>
+     <name>anti-fraud</name>
+     <description>Ecommerce Anti Fraud</description>
+     <properties>
+diff --git a/src/main/java/com/mycompany/ecommerce/antifraud/AntiFraudApplication.java b/src/main/java/com/mycompany/ecommerce/antifraud/AntiFraudApplication.java
+index 02ad61a..52d3f38 100644
+--- a/src/main/java/com/mycompany/ecommerce/antifraud/AntiFraudApplication.java
++++ b/src/main/java/com/mycompany/ecommerce/antifraud/AntiFraudApplication.java
+@@ -48,8 +48,7 @@ public class AntiFraudApplication {
+ 
+ 	@GetMapping("/ecommerce")
+ 	public String ecommerce(@RequestParam(value = "name", defaultValue = "World") String name) {
+-		//String prefix = "Bye";
+-		String prefix = "Hello";
++		String prefix = "Bye";
+ 		String title = String.format("%s %s!", prefix, name);
+ 		String body = String.format("%s %s!", prefix, name);
+ 		return String.format(format, title, green, body);

@@ -1,0 +1,38 @@
+diff --git a/pom.xml b/pom.xml
+index 42e5354..9dc4044 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -10,7 +10,7 @@
+     </parent>
+     <groupId>com.mycompany.ecommerce</groupId>
+     <artifactId>anti-fraud</artifactId>
+-    <version>0.0.2</version>
++    <version>0.0.3</version>
+     <name>anti-fraud</name>
+     <description>Ecommerce Anti Fraud</description>
+     <properties>
+diff --git a/src/main/java/com/mycompany/ecommerce/antifraud/AntiFraudApplication.java b/src/main/java/com/mycompany/ecommerce/antifraud/AntiFraudApplication.java
+index 52d3f38..904ef0b 100644
+--- a/src/main/java/com/mycompany/ecommerce/antifraud/AntiFraudApplication.java
++++ b/src/main/java/com/mycompany/ecommerce/antifraud/AntiFraudApplication.java
+@@ -68,9 +68,9 @@ public class AntiFraudApplication {
+ 
+ 	private void generateError() {
+ 		// Comment out to generate a synthetic error
+-		/*if (pomVersion.equals("0.0.3")) {
++		if (pomVersion.equals("0.0.3")) {
+ 			// Generate a synthetic error if version is not right
+ 			throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE);
+-		}*/
++		}
+ 	}
+ }
+diff --git a/versions.properties b/versions.properties
+index d6d0efd..1540f9d 100644
+--- a/versions.properties
++++ b/versions.properties
+@@ -1,2 +1,2 @@
+-CURRENT=0.0.1
+-NEW=0.0.2
++CURRENT=0.0.2
++NEW=0.0.3
