@@ -85,5 +85,5 @@ def notifyBuild(status) {
       ]
     ]
   ]
-  slackSend(channel: "#failures", blocks: blocks)
+  slackSend(channel: "#cicd", blocks: blocks)
 }
