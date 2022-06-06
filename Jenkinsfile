@@ -76,7 +76,7 @@ def notifyBuild(status) {
         "type": "section",
         "text": [
           "type": "mrkdwn",
-          "text": "The CI/CD build finished with status `${currentBuild.result}`\\n\\n<${env.OTEL_ELASTIC_URL}|View traces in OpenTelemetry>"
+          "text": "The CI/CD build finished with status `${currentBuild.result}`\n\n<${env.OTEL_ELASTIC_URL}|View traces in OpenTelemetry>"
         ],
       "accessory": [
         "type": "image",
