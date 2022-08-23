@@ -168,14 +168,4 @@
             </resource>
         </resources>
     </build>
-    <distributionManagement>
-        <repository>
-            <id>local-nexus-releases</id>
-            <url>http://maven.example.com:8081/repository/maven-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>local-nexus-snapshots</id>
-            <url>http://maven.example.com:8081/repository/maven-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>

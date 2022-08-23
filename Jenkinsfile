@@ -29,7 +29,7 @@ pipeline {
                             usernameVariable: 'CONTAINER_REGISTRY_USERNAME')]) {
                         sh (
                         label: 'mvn deploy spring-boot:build-image',
-                        script: 'export OTEL_TRACES_EXPORTER="otlp" && ./mvnw -V -B deploy')
+                        script: 'export OTEL_TRACES_EXPORTER="otlp" && ./mvnw -V -B deploy -Dmaven.deploy.skip')
                         // security disclosure
                         //sh(label: 'security issue', script: 'echo "${CONTAINER_REGISTRY_PASSWORD}" > file.txt')
                     }
