@@ -2,7 +2,7 @@ pipeline {
     agent { label 'linux' }
     options {
         disableConcurrentBuilds()
-        quietPeriod(15)
+        quietPeriod(1)
     }
     stages {
         stage('Checkout') {
