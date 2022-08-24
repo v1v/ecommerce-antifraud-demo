@@ -102,14 +102,7 @@
                             <BPE_OTEL_LOGS_EXPORTER>otlp</BPE_OTEL_LOGS_EXPORTER>
                         </env>
                     </image>
-                    <publish>true</publish>
-                    <docker>
-                        <publishRegistry>
-                            <username>${container-registry.username}</username>
-                            <password>${container-registry.password}</password>
-                            <url>https://docker.io</url>
-                        </publishRegistry>
-                    </docker>
+                    <publish>false</publish>
                 </configuration>
             </plugin>
             <plugin>
