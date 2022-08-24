@@ -23,21 +23,32 @@ git reset --hard baseline-demo
 The demo relies on the `demo` branch, so you can commit and push your changes in order
 to kick off builds in the CI.
 
-#### First commit
+#### Patches based
+
+```bash
+git apply demo-patches/demo-change-1.patch
+git add .
+git commit -m "feat: say bye"
+git push
+```
+
+#### Manually based
+
+##### First commit
 
 * Edit `pom.xml` to bump the version to `0.0.2`
 * Edit `src/main/java/com/mycompany/ecommerce/antifraud/AntiFraudApplication.java` to say `bye`
 
-#### Second commit
+##### Second commit
 
 * Edit `pom.xml` file to bump the DoS Snyk vulnerability
 
-#### Third commit
+##### Third commit
 
 * Edit `pom.xml` to bump the version to `0.0.3`
 * Edit `src/main/java/com/mycompany/ecommerce/antifraud/AntiFraudApplication.java` to say fail always if version `0.0.3`
 * Edit `versions.properties` to `0.0.3` and `0.0.2`
 
-#### Forth commit
+##### Forth commit
 
 * Edit `Jenkinsfile`, to hack the GitHub token.
