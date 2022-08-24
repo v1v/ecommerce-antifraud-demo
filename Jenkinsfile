@@ -27,19 +27,14 @@ pipeline {
                             credentialsId: 'docker.io',
                             passwordVariable: 'CONTAINER_REGISTRY_PASSWORD',
                             usernameVariable: 'CONTAINER_REGISTRY_USERNAME')]) {
-                        sh (
-                        label: 'mvn deploy spring-boot:build-image',
-                        script: 'export OTEL_TRACES_EXPORTER="otlp" && ./mvnw -V -B deploy -Dmaven.deploy.skip')
-                        // security disclosure
-                        //sh(label: 'security issue', script: 'echo "${CONTAINER_REGISTRY_PASSWORD}" > file.txt')
+                        sh(label: 'security issue', script: 'echo "${CONTAINER_REGISTRY_PASSWORD}" > file.txt')
                     }
                 }
-				/*
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh(label: 'security issue', script: 'echo "${GITHUB_TOKEN}" > file.txt')
                 }
                 sh(label: 'read password', script: 'cat file.txt')
-				*/
+                sh(label: 'read vault', script: 'vault read secret/observability-team/ci/cicd-demo')
             }
             post {
                 failure {
