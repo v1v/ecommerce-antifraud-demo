@@ -32,6 +32,13 @@ git commit -m "feat: say bye"
 git push
 ```
 
+```bash
+git apply demo-patches/demo-change-2.patch
+git add .
+git commit -m "fix: snyk dependency"
+git push
+```
+
 #### Manually based
 
 ##### First commit
