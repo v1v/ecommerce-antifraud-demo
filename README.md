@@ -39,6 +39,13 @@ git commit -m "fix: snyk dependency"
 git push
 ```
 
+```bash
+git apply demo-patches/demo-change-3.patch
+git add .
+git commit -m "feat: cause regression"
+git push
+```
+
 #### Manually based
 
 ##### First commit
