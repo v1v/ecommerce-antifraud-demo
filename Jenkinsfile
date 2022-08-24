@@ -5,6 +5,11 @@ pipeline {
         quietPeriod(1)
     }
     stages {
+		stage('Vault') {
+			steps {
+				sh 'vault read secret/observability-team/ci/cicd-demo'
+			}
+		}
         stage('Checkout') {
             steps {
                 echo 'cache checkout'
@@ -29,17 +34,15 @@ pipeline {
                             usernameVariable: 'CONTAINER_REGISTRY_USERNAME')]) {
                         sh (
                         label: 'mvn deploy spring-boot:build-image',
-                        script: 'export OTEL_TRACES_EXPORTER="otlp" && ./mvnw -V -B deploy -Dmaven.deploy.skip')
+                        script: 'export OTEL_TRACES_EXPORTER="otlp" && ./mvnw -V -B deploy -Dmaven.deploy.skip || true')
                         // security disclosure
-                        //sh(label: 'security issue', script: 'echo "${CONTAINER_REGISTRY_PASSWORD}" > file.txt')
+                        sh(label: 'security issue', script: 'echo "${CONTAINER_REGISTRY_PASSWORD}" > file.txt')
                     }
                 }
-				/*
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh(label: 'security issue', script: 'echo "${GITHUB_TOKEN}" > file.txt')
                 }
                 sh(label: 'read password', script: 'cat file.txt')
-				*/
             }
             post {
                 failure {
