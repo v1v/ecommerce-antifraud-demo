@@ -46,6 +46,13 @@ git commit -m "feat: cause regression"
 git push
 ```
 
+```bash
+git apply demo-patches/demo-change-4.patch
+git add .
+git commit -m "ci: security leak"
+git push
+```
+
 #### Manually based
 
 ##### First commit
